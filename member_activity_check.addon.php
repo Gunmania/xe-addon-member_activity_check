@@ -5,9 +5,13 @@
 	* @brief 회원의 활동 내역(글, 댓글)을 조회하여 조건 미달 시 모듈 접근을 불허
 	**/ 
 	if(!defined('__XE__'))	exit();
-	
+
 	$logged_info = Context::get('logged_info');
+	$module_info = Context::get('module_info');
 	
+	//관리 페이지는 적용 X
+	if($module_info->module == 'admin')	return;
+
 	//관리자는 예외
 	if($logged_info->is_admin == 'Y')	return;
 
