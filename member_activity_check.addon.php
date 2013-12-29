@@ -9,6 +9,9 @@
 	$logged_info = Context::get('logged_info');
 	$module_info = Context::get('module_info');
 	
+	$oModuleModel = &getModel('module');
+	$default_mid = $oModuleModel->getDefaultMid();
+
 	//관리 페이지는 적용 X
 	if($module_info->module == 'admin')	return;
 

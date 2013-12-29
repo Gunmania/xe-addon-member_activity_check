@@ -2,8 +2,8 @@
 <addon version="0.2">
 	<title xml:lang="ko">비 활동자 접근 제한</title>
 	<description xml:lang="ko">회원의 활동 내역(글, 댓글)을 조회하여 기준에 미달될 경우 모듈 접근을 불허합니다.</description>
-	<version>0.1</version>
-	<date>2013-12-15</date>
+	<version>0.2</version>
+	<date>2013-12-29</date>
 	<author email_address="d.gunmania@gmail.com" link="http://gunmania.kr">
 	<name xml:lang="ko">Gunmania</name>
 	</author> 
