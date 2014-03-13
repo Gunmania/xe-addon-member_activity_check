@@ -8,9 +8,13 @@
 
 	$logged_info = Context::get('logged_info');
 	$module_info = Context::get('module_info');
-	
-	$oModuleModel = &getModel('module');
-	$default_mid = $oModuleModel->getDefaultMid();
+	$site_module_info = Context::get('site_module_info');
+		
+	//기본 모듈은 제외
+	$obj_1->site_srl = $site_module_info->site_srl;
+	$srl_output = executeQuery('addons.member_activity_check.getDefaultMidbySiteSrl', $obj_1);
+	$default_srl = $srl_output->data->default_srl;
+	if($module_info->module_srl == $default_srl) return;
 
 	//관리 페이지는 적용 X
 	if($module_info->module == 'admin')	return;
@@ -20,9 +24,9 @@
 
 	if($called_position != 'before_display_content')	return;
 
-	$obj->s_member_srl = $logged_info->member_srl;
-	$document_output = executeQuery('addons.member_activity_check.getDocumentCount', $obj);
-	$comment_output = executeQuery('addons.member_activity_check.getCommentCount', $obj);
+	$obj_2->s_member_srl = $logged_info->member_srl;
+	$document_output = executeQuery('addons.member_activity_check.getDocumentCount', $obj_2);
+	$comment_output = executeQuery('addons.member_activity_check.getCommentCount', $obj_2);
 
 	$docu_count = $document_output->data->count;
 	$comm_count = $comment_output->data->count;
