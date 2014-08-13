@@ -38,9 +38,11 @@
 	
 	//활동 기준치를 만족하지 못할 때
 	else {
+		$ref = $_SERVER['HTTP_REFERER'];
 		header("Content-Type: text/html; charset=UTF-8");
 		echo '<script>alert("활동(글, 댓글 작성)이 부족하여 접근이 불가능합니다.\n\n접근 권한 : 글 '.$addon_info->document.'개, 댓글 '.$addon_info->comment.'개 이상\n현재 활동 내역 : 글 '.$docu_count.'개, 댓글 '.$comm_count.'개 작성");</script>';
-		echo '<script>window.location.href = "/";</script>';
+		if($ref)	echo '<script>window.location.href = "'.$ref.'";</script>';
+		else	echo '<script>window.location.href = "/";</script>';
 		exit();
 	}
 
